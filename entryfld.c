@@ -1,5 +1,5 @@
-#pragma	title("Entry Field Replacement  --  Version 1.0 -- (EntryFld.C)")
-#pragma	subtitle("   Entry Field Control - Interface Definitions")
+// // #pragma	title("Entry Field Replacement  --  Version 1.0 -- (EntryFld.C)")
+// // #pragma	subtitle("   Entry Field Control - Interface Definitions")
 
 /* Program name: Listbox.C    Title: A Entry Field Replacement		*/
 /*									*/
@@ -14,8 +14,8 @@
 /*			  Borland C++ for OS/2				*/
 /*			  OS/2 Toolkit					*/
 
-/* Copyright ¸ International Business Machines Corp. 1991-1994		*/
-/* Copyright ¸ 1989-1994  Prominare Inc.  All Rights Reserved.		*/
+/* Copyright Â¸ International Business Machines Corp. 1991-1994		*/
+/* Copyright Â¸ 1989-1994  Prominare Inc.  All Rights Reserved.		*/
 
 
 /************************************************************************/
@@ -48,8 +48,8 @@
 /************************************************************************/
 /************************************************************************/
 
-#pragma	info(noext)
-#pragma	strings(readonly)
+// // #pragma	info(noext)
+// // #pragma	strings(readonly)
 
 #define	INCL_DOS		   /* Include OS/2 DOS Kernal		*/
 #define	INCL_GPI		   /* Include OS/2 PM GPI Interface	*/
@@ -202,8 +202,8 @@ static VOID PasteText(PENTRYFWIN pefw, PSZ pszBuffer, LONG cLen);
 /************************************************************************/
 /************************************************************************/
 
-#pragma	subtitle("   Entry Field Control - Presentation Parameter Retrieve Procedure")
-#pragma	page( )
+// // #pragma	subtitle("   Entry Field Control - Presentation Parameter Retrieve Procedure")
+// // #pragma	page( )
 
 /* --- lGetPresParam ----------------------------------	[ Private } ---	*/
 /*									*/
@@ -274,8 +274,8 @@ else
        else
 	   return(RGB_WHITE);
 }
-#pragma	subtitle("   Entry Field Control - Entry Field Sizing Procedure")
-#pragma	page( )
+// // #pragma	subtitle("   Entry Field Control - Entry Field Sizing Procedure")
+// // #pragma	page( )
 
 /* --- SizeEntryField ---------------------------------	[ Private } ---	*/
 /*									*/
@@ -358,8 +358,8 @@ pefw->aptlInside[4].x =	1L;
 pefw->aptlInside[4].y =	0L;
 
 }
-#pragma	subtitle("   Entry Field Control - Text Character Position Procedure")
-#pragma	page( )
+// // #pragma	subtitle("   Entry Field Control - Text Character Position Procedure")
+// // #pragma	page( )
 
 /* --- QueryCharPoints --------------------------------	[ Private } ---	*/
 /*									*/
@@ -416,14 +416,14 @@ if ( pefw->cText )
 		       /* one additional point holder for the right	*/
 		       /* edge of the last character.			*/
 
-   GpiQueryCharStringPos(pefw->hPS, 0UL, pefw->cText, pefw->szText, (PLONG)NULL,
+   GpiQueryCharStringPos(pefw->hPS, 0UL, pefw->cText, (PCCH) pefw->szText, (PLONG)NULL,
 			 pefw->aptl = (PPOINTL)HeapMalloc(pefw->hHeap,
 							  (ULONG)(sizeof(POINTL) * (pefw->cText	+ 1))));
 
 		       /* Determine the	actual text box	bounding	*/
 		       /* rectangle					*/
 
-   GpiQueryTextBox(pefw->hPS, pefw->cText, pefw->szText, 5L, rgptl);
+   GpiQueryTextBox(pefw->hPS, pefw->cText, (PCH) pefw->szText, 5L, rgptl);
 
 		       /* Save the right edge of the last character	*/
 		       /* in the last point holder.  This will allow	*/
@@ -439,8 +439,8 @@ else
 pefw->fChanged = TRUE;
 
 }
-#pragma	subtitle("   Entry Field Control - Text Character Position Procedure")
-#pragma	page( )
+// // #pragma	subtitle("   Entry Field Control - Text Character Position Procedure")
+// // #pragma	page( )
 
 /* --- lFindCharacterIndex ----------------------------	[ Private } ---	*/
 /*									*/
@@ -525,8 +525,8 @@ else
 
 return(0L);
 }
-#pragma	subtitle("   Entry Field Control - Text Character Position Procedure")
-#pragma	page( )
+// #pragma	subtitle("   Entry Field Control - Text Character Position Procedure")
+// #pragma	page( )
 
 /* --- lCalcDisplayPoint ------------------------------	[ Private } ---	*/
 /*									*/
@@ -580,8 +580,8 @@ else
 
 return((xPoint < pefw->rclText.xRight) ? xPoint	: pefw->rclText.xRight);
 }
-#pragma	subtitle("   Entry Field Control - Scroll Right Determination Procedure")
-#pragma	page( )
+// #pragma	subtitle("   Entry Field Control - Scroll Right Determination Procedure")
+// #pragma	page( )
 
 /* --- fScrollRight -----------------------------------	[ Private } ---	*/
 /*									*/
@@ -598,7 +598,7 @@ return((xPoint < pefw->rclText.xRight) ? xPoint	: pefw->rclText.xRight);
 /*     Upon Exit:							*/
 /*									*/
 /*     fScrollRight =  TRUE : Scrolling	to Right Should	Occur		*/
-/*		    = FALSE : No Scrolling Should Occur
+/*		    = FALSE : No Scrolling Should Occur						*/
 /*									*/
 /* --------------------------------------------------------------------	*/
 
@@ -630,8 +630,8 @@ else
 		       /* no scroll flag				*/
    return(FALSE);
 }
-#pragma	subtitle("   Entry Field Control - Cursor Management Procedure")
-#pragma	page( )
+// #pragma	subtitle("   Entry Field Control - Cursor Management Procedure")
+// #pragma	page( )
 
 /* --- ShowCursor -------------------------------------	[ Private } ---	*/
 /*									*/
@@ -702,8 +702,8 @@ if ( pefw->xCursor != xCursor )
 	   WinShowCursor(pefw->hWnd, pefw->fCursorShown	= FALSE);
    }
 }
-#pragma	subtitle("   Entry Field Control - Overtype Character Drawing Procedure")
-#pragma	page( )
+// #pragma	subtitle("   Entry Field Control - Overtype Character Drawing Procedure")
+// #pragma	page( )
 
 /* --- DrawOvertype -----------------------------------	[ Private } ---	*/
 /*									*/
@@ -741,10 +741,10 @@ WinFillRect(pefw->hPS, &pefw->rclDraw, pefw->lClrHiliteBackground);
 		       /* lighted					*/
 
 GpiCharStringPosAt(pefw->hPS, &pefw->ptlDraw, &pefw->rclDraw, CHS_CLIP,
-		   1L, &pefw->szText[pefw->iSel], NULL);
+		   1L, (PCCH) &pefw->szText[pefw->iSel], NULL);
 }
-#pragma	subtitle("   Entry Field Control - Text Drawing Procedure")
-#pragma	page( )
+// #pragma	subtitle("   Entry Field Control - Text Drawing Procedure")
+// #pragma	page( )
 
 /* --- DrawTextString ---------------------------------	[ Private } ---	*/
 /*									*/
@@ -789,10 +789,10 @@ WinFillRect(pefw->hPS, &pefw->rclDraw, fHighlighted ?
 		       /* calculated					*/
 
 GpiCharStringPosAt(pefw->hPS, &pefw->ptlDraw, &pefw->rclDraw, CHS_CLIP,
-		   iEnd	- iStart, &pefw->szText[iStart], NULL);
+		   iEnd	- iStart, (PCCH) &pefw->szText[iStart], NULL);
 }
-#pragma	subtitle("   Entry Field Control - Text Character Position Procedure")
-#pragma	page( )
+// #pragma	subtitle("   Entry Field Control - Text Character Position Procedure")
+// #pragma	page( )
 
 /* --- DrawText	---------------------------------------	[ Private } ---	*/
 /*									*/
@@ -934,8 +934,8 @@ else
 
 WinShowCursor(pefw->hWnd, pefw->fCursorShown = TRUE);
 }
-#pragma	subtitle("   Entry Field Control - Text Character Position Procedure")
-#pragma	page( )
+// #pragma	subtitle("   Entry Field Control - Text Character Position Procedure")
+// #pragma	page( )
 
 /* --- DrawSubText ------------------------------------	[ Private } ---	*/
 /*									*/
@@ -1093,8 +1093,8 @@ else
 
 WinShowCursor(pefw->hWnd, pefw->fCursorShown = TRUE);
 }
-#pragma	subtitle("   Entry Field Control - Overtype Text Draw Procedure")
-#pragma	page( )
+// #pragma	subtitle("   Entry Field Control - Overtype Text Draw Procedure")
+// #pragma	page( )
 
 /* --- DrawOvertypeText	-------------------------------	[ Private } ---	*/
 /*									*/
@@ -1156,7 +1156,7 @@ else
 		       /* Draw the text					*/
 
    GpiCharStringPosAt(pefw->hPS, &pefw->ptlDraw, &pefw->rclDraw, CHS_CLIP, 1L,
-		      &pefw->szText[fMoveRight ? pefw->iSel - 1	: pefw->iSel + 1], NULL);
+		      (PCCH) &pefw->szText[fMoveRight ? pefw->iSel - 1	: pefw->iSel + 1], NULL);
    }
 		       /* Determine if the current selection point is	*/
 		       /* not at the end of the	text string which if	*/
@@ -1188,7 +1188,7 @@ if ( pefw->iSel	< pefw->cText )
 		       /* Draw the highlighted character		*/
 
    GpiCharStringPosAt(pefw->hPS, &pefw->ptlDraw, &pefw->rclDraw, CHS_CLIP,
-		      1L, &pefw->szText[pefw->iSel], NULL);
+		      1L, (PCCH) &pefw->szText[pefw->iSel], NULL);
    }
 		       /* Release the presentation space		*/
 WinReleasePS(pefw->hPS);
@@ -1197,8 +1197,8 @@ WinReleasePS(pefw->hPS);
 
 WinShowCursor(pefw->hWnd, pefw->fCursorShown = TRUE);
 }
-#pragma	subtitle("   Entry Field Control - Text Character Position Procedure")
-#pragma	page( )
+// #pragma	subtitle("   Entry Field Control - Text Character Position Procedure")
+// #pragma	page( )
 
 /* --- SelectText -------------------------------------	[ Private } ---	*/
 /*									*/
@@ -1296,8 +1296,8 @@ if ( iSelected != pefw->iSel )
    WinReleasePS(pefw->hPS);
    }
 }
-#pragma	subtitle("   Entry Field Control - Entry Field Metrics Update Procedure")
-#pragma	page( )
+// #pragma	subtitle("   Entry Field Control - Entry Field Metrics Update Procedure")
+// #pragma	page( )
 
 /* --- RefreshMetrics ---------------------------------	[ Private ] ---	*/
 /*									*/
@@ -1361,8 +1361,8 @@ pefw->yCursor  = EFMARGIN_BOTTOM;
 if ( (pefw->cx > 0L) &&	(pefw->cx > 0L)	)
     SizeEntryField(pefw);
 }
-#pragma	subtitle("   Entry Field Control - Entry Field Control Data Decoding Procedure")
-#pragma	page( )
+// #pragma	subtitle("   Entry Field Control - Entry Field Control Data Decoding Procedure")
+// #pragma	page( )
 
 /* --- DecodeCtlData ----------------------------------	[ Private ] ---	*/
 /*									*/
@@ -1420,8 +1420,8 @@ else
        pefw->iSelEnd = (LONG)pefcd->efd2.ichMaxSel;
        }
 }
-#pragma	subtitle("   Entry Field Control - Entry Field Message Processing Procedure")
-#pragma	page( )
+// #pragma	subtitle("   Entry Field Control - Entry Field Message Processing Procedure")
+// #pragma	page( )
 
 /* --- mrBaseFieldHandler -----------------------------	[ Private ] ---	*/
 /*									*/
@@ -1444,7 +1444,7 @@ else
 MRESULT	EXPENTRY mrBaseFieldHandler(HWND hWnd, ULONG msg, MPARAM mp1, MPARAM mp2)
 
 {
-#pragma	info(nopar)
+// #pragma	info(nopar)
 
 BOOL	   fChanged;		   /* Previous Changed Flag		*/
 BOOL	   fInsertMode;		   /* Previous Insert Mode Flag		*/
@@ -1519,7 +1519,7 @@ switch ( msg )
 
 	       WinOpenClipbrd(pefw->hAB);
 	       WinEmptyClipbrd(pefw->hAB);
-	       WinSetClipbrdData(pefw->hAB, (ULONG)pszCopyText(pefw, pchClipText,
+	       WinSetClipbrdData(pefw->hAB, (ULONG)pszCopyText(pefw, (PSZ) pchClipText,
 							       pefw->iSelStart,
 							       pefw->iSelEnd),
 				 CF_TEXT, CFI_POINTER);
@@ -1565,7 +1565,7 @@ switch ( msg )
 	   WinOpenClipbrd(pefw->hAB);
 	   WinEmptyClipbrd(pefw->hAB);
 	   WinSetClipbrdData(pefw->hAB,
-			     (ULONG)pszCopyText(pefw, pchClipText, pefw->iSelStart, pefw->iSelEnd),
+			     (ULONG)pszCopyText(pefw, (PSZ) pchClipText, pefw->iSelStart, pefw->iSelEnd),
 			     CF_TEXT, CFI_POINTER);
 
 		       /* Close	the clipboard to allow the copied text	*/
@@ -1624,7 +1624,7 @@ switch ( msg )
 		       /* Paste	the text into the entry	field at the	*/
 		       /* current selection point			*/
 
-		       PasteText(pefw, pchClipText, n);
+		       PasteText(pefw, (PSZ) pchClipText, n);
 		       }
 		       /* Finished with	the clipboard, close it		*/
 
@@ -1854,10 +1854,10 @@ switch ( msg )
    }
 return(0L);
 }
-#pragma	info(par)
+// #pragma	info(par)
 
-#pragma	subtitle("   Entry Field Control   - Exception Handler Routine")
-#pragma	page( )
+// #pragma	subtitle("   Entry Field Control   - Exception Handler Routine")
+// #pragma	page( )
 
 /* --- EntryFieldExceptionHandler ---------------------	[ Private ] ---	*/
 /*									*/
@@ -1883,7 +1883,7 @@ APIRET APIENTRY	EntryFieldExceptionHandler(PEXCEPTIONREPORTRECORD pxcptrepr,
 					   PCONTEXTRECORD pcr, PVOID sysinfo)
 
 {
-#pragma	info(nopar)
+// #pragma	info(nopar)
 
 if ( (EH_EXIT_UNWIND & pxcptrepr->fHandlerFlags) ||
      (EH_UNWINDING   & pxcptrepr->fHandlerFlags) ||
@@ -1891,14 +1891,14 @@ if ( (EH_EXIT_UNWIND & pxcptrepr->fHandlerFlags) ||
    return(XCPT_CONTINUE_SEARCH);
 
 if ( pxcptrepr->ExceptionNum ==	XCPT_ACCESS_VIOLATION )
-   longjmp((INT	*)jBuf,	1);
+   longjmp((struct _jmp_buf *)jBuf,	1);
 
 return(XCPT_CONTINUE_SEARCH);
 }
-#pragma	info(par)
+// #pragma	info(par)
 
-#pragma	subtitle("   Entry Field Control - Delete Text Routine")
-#pragma	page( )
+// #pragma	subtitle("   Entry Field Control - Delete Text Routine")
+// #pragma	page( )
 
 /* --- DeleteText -------------------------------------	[ Private ] ---	*/
 /*									*/
@@ -2033,8 +2033,8 @@ if ( iSelStart < pefw->cText )
    DosUnsetExceptionHandler(&xcptregr);
    }
 }
-#pragma	subtitle("   Entry Field Control - Copy Text Routine")
-#pragma	page( )
+// #pragma	subtitle("   Entry Field Control - Copy Text Routine")
+// #pragma	page( )
 
 /* --- pszCopyText ------------------------------------	[ Private ] ---	*/
 /*									*/
@@ -2112,8 +2112,8 @@ if ( iSelStart < pefw->cText )
    }
 return(pszBuffer);
 }
-#pragma	subtitle("   Entry Field Control - Paste Text Routine")
-#pragma	page( )
+// #pragma	subtitle("   Entry Field Control - Paste Text Routine")
+// #pragma	page( )
 
 /* --- PasteText --------------------------------------	[ Private ] ---	*/
 /*									*/
@@ -2153,9 +2153,9 @@ if ( !setjmp(jBuf) )
 		       /* display					*/
 
    if (	pefw->flStyle &	ES_UNREADABLE )
-       pszBuffer = pefw->szPassword;
+       pszBuffer = (PSZ) pefw->szPassword;
    else
-       pszBuffer = pefw->szText;
+       pszBuffer = (PSZ) pefw->szText;
 
 		       /* Check	to see if the insertion	point is before	*/
 		       /* the end of the string				*/
@@ -2189,7 +2189,7 @@ if ( !setjmp(jBuf) )
 		       /* entry	field string, check to see which	*/
 		       /* concatonation	method should be used		*/
        if ( cLen > 1L )
-	   strncat(pszBuffer, pszInsText, (UINT)cLen + 1);
+	   strncat( (char * restrict) pszBuffer, (const char * restrict) pszInsText, (UINT)cLen + 1);
        else
 	   {
 	   pszBuffer[pefw->iSel] = pszInsText[0];
@@ -2267,8 +2267,8 @@ DosUnsetExceptionHandler(&xcptregr);
 /************************************************************************/
 /************************************************************************/
 
-#pragma	subtitle("   Entry Field Control - Entry Field Registration Procedure")
-#pragma	page( )
+// #pragma	subtitle("   Entry Field Control - Entry Field Registration Procedure")
+// #pragma	page( )
 
 /* --- fRegisterEntryField ----------------------------- [ Public ] ---	*/
 /*									*/
@@ -2292,15 +2292,15 @@ BOOL EXPENTRY fRegisterEntryField(HAB hAB)
 {
 		       /* Register the replace entry field class	*/
 
-if ( WinRegisterClass(hAB, "EntryFieldWindow", (PFNWP)EntryWndProc,
+if ( WinRegisterClass(hAB, (PCSZ) "EntryFieldWindow", (PFNWP)EntryWndProc,
 		      CS_SYNCPAINT | CS_SIZEREDRAW | CS_PARENTCLIP | CS_CLIPCHILDREN,
 		      USER_RESERVED) )
    return(TRUE);
 else
    return(FALSE);
 }
-#pragma	subtitle("   Entry Field Control - Entry Field Window Procedure")
-#pragma	page( )
+// #pragma	subtitle("   Entry Field Control - Entry Field Window Procedure")
+// #pragma	page( )
 
 /* --- EntryWndProc ------------------------------------ [ Public ] ---	*/
 /*									*/
@@ -2384,7 +2384,7 @@ switch ( msg )
 
        if ( pcrst->pszText )
 	   memcpy(pefw->szText,	pcrst->pszText,
-		  (UINT)((pefw->cText =	(LONG)strlen(pcrst->pszText)) +	1));
+		  (UINT)((pefw->cText =	(LONG)strlen((const char *) pcrst->pszText)) +	1));
 
 		       /* Save the size	of the Entry Field along with	*/
 		       /* the current style				*/
@@ -2455,13 +2455,13 @@ switch ( msg )
    /*********************************************************************/
 
    case	WM_ACTIVATE :
-       if ( (hwndHelp =	WinQueryHelpInstance(hWnd)) != (HWND)NULL )
+       if ( (hwndHelp =	WinQueryHelpInstance(hWnd)) != (HWND)NULL ){
 
 		       /* When the window is being activated or		*/
 		       /* deactivated, make sure that the control	*/
 		       /* responds properly to help requests when it	*/
 		       /* has the focus					*/
-
+		}
 	   if (	SHORT1FROMMP(mp1) )
 	       WinSendMsg(hwndHelp, HM_SET_ACTIVE_WINDOW,
 			  MPFROMHWND(WinQueryWindow(hWnd, QW_PARENT)),
@@ -3323,7 +3323,7 @@ switch ( msg )
 			       WinEmptyClipbrd(pefw->hAB);
 			       WinSetClipbrdData(pefw->hAB,
 						 (ULONG)pszCopyText(pefw,
-								    pchClipText,
+								    (PSZ) pchClipText,
 								    pefw->iSelStart,
 								    pefw->iSelEnd),
 						 CF_TEXT, CFI_POINTER);
@@ -3485,7 +3485,7 @@ switch ( msg )
 			   WinOpenClipbrd(pefw->hAB);
 			   WinEmptyClipbrd(pefw->hAB);
 			   WinSetClipbrdData(pefw->hAB,
-					     (ULONG)pszCopyText(pefw, pchClipText, pefw->iSelStart, pefw->iSelEnd),
+					     (ULONG)pszCopyText(pefw, (PSZ) pchClipText, pefw->iSelStart, pefw->iSelEnd),
 					     CF_TEXT, CFI_POINTER);
 
 		       /* Close	the clipboard to allow the copied text	*/
@@ -3533,7 +3533,7 @@ switch ( msg )
 		       /* Paste	the text into the entry	field at the	*/
 		       /* current selection point			*/
 
-				       PasteText(pefw, pchClipText, n);
+				       PasteText(pefw, (PSZ) pchClipText, n);
 				       }
 
 		       /* Finished with	the clipboard, close it		*/
@@ -3644,7 +3644,7 @@ switch ( msg )
 		       /* control does not return a TRUE response to	*/
 		       /* the overflow notification			*/
 
-		   if (	pefw->cText >= pefw->cLimit )
+		   if (	pefw->cText >= pefw->cLimit ){
 		       if ( LONGFROMMR(mrNotifyOwner(pefw, EN_OVERFLOW)) == TRUE )
 			   {
 			   if (	pefw->cText >= pefw->cLimit )
@@ -3662,7 +3662,7 @@ switch ( msg )
 		       /* Check	to see if any text has been selected	*/
 		       /* which	means that the selected	text is		*/
 		       /* to be	replaced with the keystroke character	*/
-
+			}
 		   if (	pefw->iSelStart	!= pefw->iSelEnd )
 		       DeleteText(pefw,	pefw->iSelStart, pefw->iSelEnd,
 				  FALSE);
@@ -3677,12 +3677,12 @@ switch ( msg )
 			   DeleteText(pefw, pefw->iSel,	pefw->iSel + 1L,
 				      FALSE);
 
-		       /* Save the keystroke within the	text buffer	*/				
+		       /* Save the keystroke within the	text buffer	*/
 		       /* and then insert the text into	the entry	*/
 		       /* field						*/
 
 		   pefw->szInput[0] = (BYTE)CHARMSG(&msg)->chr;
-		   PasteText(pefw, pefw->szInput, 1L);
+		   PasteText(pefw, (PSZ) pefw->szInput, 1L);
 
 		       /* Check	to see if the text limit has been	*/
 		       /* reached in which case	the auto tab style	*/
@@ -3939,7 +3939,7 @@ switch ( msg )
 		       /* Set the colour table to RGB mode		*/
 
        if ( (pefw->hPS = WinBeginPaint(hWnd, (HPS)NULL,	&rclPaint)) != (HPS)NULL )
-	   {	
+	   {
 		       /* Check	to see if a style change has occurred	*/
 		       /* and if the case, save	the new	style		*/
 		       /* internally and refresh the control metrics	*/

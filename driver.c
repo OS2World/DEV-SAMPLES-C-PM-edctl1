@@ -1,5 +1,5 @@
-#pragma	title("Prominare Designer  --  Version 2.10 -- (Colours.C)")
-#pragma	subtitle("   Prominare Designer - Interface Definitions")
+// #pragma	title("Prominare Designer  --  Version 2.10 -- (Colours.C)")
+// #pragma	subtitle("   Prominare Designer - Interface Definitions")
 
 #define	INCL_DOS		   /* Include OS/2 DOS Kernal		*/
 #define	INCL_GPI		   /* Include OS/2 PM GPI Interface	*/
@@ -8,9 +8,9 @@
 #define	INCL_NLS		   /* Include OS/2 PM NLS		*/
 #define	INCL_SW			   /* Include OS/2 MultiMedia Support	*/
 
-#pragma	info(nopar)
+// #pragma	info(nopar)
 
-static char *MODID = "@(#)driver.c:1.07";
+// static char *MODID = "@(#)driver.c:1.07";
 
 #include <os2.h>
 #include <string.h>
@@ -31,7 +31,7 @@ static char *MODID = "@(#)driver.c:1.07";
 /*		       ExePack						*/
 /*		       Link						*/
 /* CPU		       80386						*/
-/* Warning Level       3						*/	
+/* Warning Level       3						*/
 /*									*/
 /* Equivalent command line invocation of each module using the		*/
 /* IBM C Set/2 Compiler	Version	1.0 is:					*/
@@ -51,7 +51,7 @@ static char *MODID = "@(#)driver.c:1.07";
 
 #define	USER_RESERVED	   8	   /* Control Reserved Memory Size	*/
 
-PSZ pszDriverClassName = "Entryfield.Desktop";
+PSZ pszDriverClassName = (PSZ) "Entryfield.Desktop";
 
 HPOINTER hptrWait;
 HPOINTER hptrArrow;
@@ -71,8 +71,8 @@ MRESULT	EXPENTRY EntryWndProc(HWND hWnd, ULONG msg, MPARAM mp1,	MPARAM mp2);
 MRESULT	EXPENTRY DriverWndProc(HWND hWnd, ULONG	msg, MPARAM mp1, MPARAM	mp2);
 
 
-#pragma	subtitle("   Client Window - Client Window Procedure")
-#pragma	page( )
+// #pragma	subtitle("   Client Window - Client Window Procedure")
+// #pragma	page( )
 
 /* --- DriverWndProc --------------------------------------------------	*/
 /*									*/
@@ -105,12 +105,12 @@ switch ( msg )
        hptrArrow = WinQuerySysPointer(HWND_DESKTOP, SPTR_ARROW,	FALSE);
        WinSetPointer(HWND_DESKTOP, hptrWait = WinQuerySysPointer(HWND_DESKTOP, SPTR_WAIT, FALSE));
 
-       hwndList1 = WinCreateWindow(hWnd, "EntryFieldWindow", "Text Text Text",
+       hwndList1 = WinCreateWindow(hWnd, (PCSZ) "EntryFieldWindow", (PCSZ)"Text Text Text",
 				   ES_MARGIN | ES_AUTOSCROLL | WS_VISIBLE,
 				   10L,	10L, 100L, 30L,	hWnd,
 				   HWND_TOP, 1024UL, (PVOID)NULL, (PVOID)NULL);
 
-       hwndListA = WinCreateWindow(hWnd, WC_ENTRYFIELD,	"Text Text Text Text Text Text",
+       hwndListA = WinCreateWindow(hWnd, WC_ENTRYFIELD,	(PCSZ)"Text Text Text Text Text Text",
 				   ES_MARGIN | ES_AUTOSCROLL | WS_VISIBLE,
 				   115L, 10L, 150L, 25L, hWnd,
 				   HWND_TOP, 1026UL, (PVOID)NULL, (PVOID)NULL);
@@ -146,8 +146,8 @@ switch ( msg )
    }
 return(0L);
 }
-#pragma	subtitle("   Program Controller")
-#pragma	page( )
+// #pragma	subtitle("   Program Controller")
+// #pragma	page( )
 
 /* --- Main Program Controller ----------------------------------------	*/
 

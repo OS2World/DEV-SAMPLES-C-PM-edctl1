@@ -1,5 +1,5 @@
-#pragma	title("List Box Replacement  --  Version 1.1 -- (EventMgr.C)")
-#pragma	subtitle("   Event Manager - Interface Definitions")
+// #pragma	title("List Box Replacement  --  Version 1.1 -- (EventMgr.C)")
+// #pragma	subtitle("   Event Manager - Interface Definitions")
 
 /* Program name: Listbox.C    Title: A List Box	Replacement		*/
 /*									*/
@@ -35,8 +35,8 @@
 /************************************************************************/
 /************************************************************************/
 
-#pragma	info(noext)
-#pragma	strings(readonly)
+// #pragma	info(noext)
+// #pragma	strings(readonly)
 
 #define	INCL_WIN		   /* Include OS/2 PM Windows Interface	*/
 
@@ -64,8 +64,8 @@
 
 /* --------------------------------------------------------------------	*/
 
-#pragma	subtitle("   Event Manager - Owner Notification Procedure")
-#pragma	page( )
+// #pragma	subtitle("   Event Manager - Owner Notification Procedure")
+// #pragma	page( )
 
 /* --- mrNotifyOwner ----------------------------------- [ Public } ---	*/
 /*									*/

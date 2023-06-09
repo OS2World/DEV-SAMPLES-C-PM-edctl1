@@ -1,7 +1,10 @@
+;-------------------------------------
+; ENTRYFLD.DEF module definition file
+;-------------------------------------
 
 LIBRARY         EntryFld INITINSTANCE
 
-DESCRIPTION    '32-Bit Entry Field Replacement'
+DESCRIPTION    '@#OS2World:1.01#@##1## 08 Jun 2023 20:00:00     ARCAOS-507::::::v1.01@@32-Bit Entry Field Replacement'
 
 CODE           LOADONCALL EXECUTEREAD NOIOPL NONCONFORMING
 DATA           LOADONCALL READWRITE NOIOPL MULTIPLE NONSHARED

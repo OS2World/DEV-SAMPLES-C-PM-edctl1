@@ -1,5 +1,5 @@
-#pragma	title("List Box Replacement  --  Version 1.1 -- (HeapMgr.C)")
-#pragma	subtitle("   Heap Manager - Interface Definitions")
+// #pragma	title("List Box Replacement  --  Version 1.1 -- (HeapMgr.C)")
+// #pragma	subtitle("   Heap Manager - Interface Definitions")
 
 /* Program name: Listbox.C    Title: A List Box	Replacement		*/
 /*									*/
@@ -14,8 +14,8 @@
 /*			  Borland C++ for OS/2				*/
 /*			  OS/2 Toolkit					*/
 
-/* Copyright ¸ International Business Machines Corp. 1991-1994		*/
-/* Copyright ¸ 1989-1994  Prominare Inc.  All Rights Reserved.		*/
+/* Copyright Â¸ International Business Machines Corp. 1991-1994		*/
+/* Copyright Â¸ 1989-1994  Prominare Inc.  All Rights Reserved.		*/
 
 /************************************************************************/
 /************************************************************************/
@@ -34,8 +34,8 @@
 /************************************************************************/
 /************************************************************************/
 
-#pragma	info(noext)
-#pragma	strings(readonly)
+// #pragma	info(noext)
+// #pragma	strings(readonly)
 
 #define	INCL_DOS		   /* Include OS/2 DOS Kernal		*/
 #define	INCL_WIN		   /* Include OS/2 PM Windows Interface	*/
@@ -104,8 +104,8 @@ typedef	struct _HEAPBASE
 
 typedef	HEAPBASE *PHEAPBASE;
 
-#pragma	subtitle("   Heap Manager - Heap Allocation Function")
-#pragma	page( )
+// #pragma	subtitle("   Heap Manager - Heap Allocation Function")
+// #pragma	page( )
 
 /* --- HeapAlloc --------------------------------------- [ Public ] ---	*/
 /*									*/
@@ -150,7 +150,7 @@ if ( DosAllocMem((PPVOID)(PVOID)&phbase, cbInitial, PAG_READ | PAG_WRITE | PAG_C
 		       /* been allocated than requested.  In this case,	*/
 		       /* the memory routines will utilize the memory	*/
 		       /* as though it was normally allocated.		*/
-	
+
 if ( cbInitial % 4096UL	)
    phbase->cbInitial  =	((cbInitial / 4096UL) +	1UL) * 4096UL;
 else
@@ -161,7 +161,7 @@ else
 		       /* been allocated than requested.  In this case,	*/
 		       /* the memory routines will utilize the memory	*/
 		       /* as though it was normally allocated.		*/
-	
+
 if ( cbNewBlks % 4096UL	)
    phbase->cbNewBlks  =	((cbNewBlks / 4096UL) +	1UL) * 4096UL;
 else
@@ -172,8 +172,8 @@ else
 
 return((HHEAPMEM)(phbase->phbaseLast = phbase));
 }
-#pragma	subtitle("   Heap Manager - Heap Release Function")
-#pragma	page( )
+// #pragma	subtitle("   Heap Manager - Heap Release Function")
+// #pragma	page( )
 
 /* --- HeapRelease ------------------------------------- [ Public ] ---	*/
 /*									*/
@@ -212,8 +212,8 @@ while (	phbase )
 
 #if defined(DEBUG_LISTBOX)
 
-#pragma	subtitle("   Heap Manager - Heap Release Function")
-#pragma	page( )
+// #pragma	subtitle("   Heap Manager - Heap Release Function")
+// #pragma	page( )
 
 /* --- HeapSize	---------------------------------------- [ Public ] ---	*/
 /*									*/
@@ -251,8 +251,8 @@ while (	phbase )
 		       /* Return the allocated size of the heap		*/
 return(ulSize);
 }
-#pragma	subtitle("   Heap Manager - Heap Status Function")
-#pragma	page( )
+// #pragma	subtitle("   Heap Manager - Heap Status Function")
+// #pragma	page( )
 
 /* --- HeapStatus -------------------------------------- [ Public ] ---	*/
 /*									*/
@@ -320,8 +320,8 @@ while (	phbase )
    phbase = phbase->phbaseNext;
    }
 }
-#pragma	subtitle("   Heap Manager - Heap Status Function")
-#pragma	page( )
+// #pragma	subtitle("   Heap Manager - Heap Status Function")
+// #pragma	page( )
 
 /* --- HeapDisplayStatus ------------------------------- [ Public ] ---	*/
 /*									*/
@@ -353,22 +353,22 @@ if ( hHeap )
    {
    HeapStatus(hHeap, &cBlocks, &ulSize,	&ulUsed, &ulFree, &ulUnused, &ulOverhead);
 
-   sprintf(szStrBuf, "Heap Size: %d\nHeap Used: %d (%d%%)\nHeap Free: %d (%d%%)\nHeap Unused: %d (%d%%)\nHeap Overhead: %d (%d%%)",
+   sprintf(szStrBuf, "Heap Size: %ld\nHeap Used: %ld (%ld%%)\nHeap Free: %ld (%ld%%)\nHeap Unused: %ld (%ld%%)\nHeap Overhead: %ld (%ld%%)",
 		     ulSize, ulUsed, (ulUsed * 100UL) /	ulSize,	ulFree,	(ulFree	* 100UL) / ulSize,
 		     ulUnused, (ulUnused * 100UL) / ulSize, ulOverhead,	(ulOverhead * 100UL) / ulSize);
    }
 else
    strcpy(szStrBuf, "NULL heap handle.");
 
-WinMessageBox(HWND_DESKTOP, HWND_DESKTOP, szStrBuf,
-	      "Heap Debug Status Report", 1UL,
+WinMessageBox(HWND_DESKTOP, HWND_DESKTOP, (PCSZ) szStrBuf,
+	      (PCSZ) "Heap Debug Status Report", 1UL,
 	      MB_OK | MB_ICONEXCLAMATION | MB_MOVEABLE);
-}	
+}
 
 #endif
 
-#pragma	subtitle("   Heap Manager - Heap Suballocation Function")
-#pragma	page( )
+// #pragma	subtitle("   Heap Manager - Heap Suballocation Function")
+// #pragma	page( )
 
 /* --- HeapMalloc -------------------------------------- [ Public ] ---	*/
 /*									*/
@@ -642,7 +642,7 @@ else
 		       /* been allocated than requested.  In this case,	*/
 		       /* the memory routines will utilize the memory	*/
 		       /* as though it was normally allocated.		*/
-	
+
 if ( (phbaseNext->cbNewBlks = cbNewBlks) % 4096UL )
    phbaseNext->cbInitial  = ((cbNewBlks	/ 4096UL) + 1) * 4096UL;
 else
@@ -667,8 +667,8 @@ phblk->phbase	 = phbaseNext;
 
 return((PVOID)((PBYTE)phblk + sizeof(HEAPBLK)));
 }
-#pragma	subtitle("   Heap Manager - Heap Suballocation Function")
-#pragma	page( )
+// #pragma	subtitle("   Heap Manager - Heap Suballocation Function")
+// #pragma	page( )
 
 /* --- HeapCalloc -------------------------------------- [ Public ] ---	*/
 /*									*/
@@ -696,8 +696,8 @@ PVOID HeapCalloc(HHEAPMEM hHeap, ULONG cItems, ULONG cbSize)
 {
 return(HeapMalloc(hHeap, cItems	* cbSize));
 }
-#pragma	subtitle("   Heap Manager - Heap Re-allocation Function")
-#pragma	page( )
+// #pragma	subtitle("   Heap Manager - Heap Re-allocation Function")
+// #pragma	page( )
 
 /* --- HeapRealloc ------------------------------------- [ Public ] ---	*/
 /*									*/
@@ -765,8 +765,8 @@ else
 		       /* return NULL to indicate problem		*/
        return(NULL);
 }
-#pragma	subtitle("   Heap Manager - Heap Release Function")
-#pragma	page( )
+// #pragma	subtitle("   Heap Manager - Heap Release Function")
+// #pragma	page( )
 
 /* --- HeapFree	---------------------------------------- [ Public ] ---	*/
 /*									*/
@@ -816,7 +816,7 @@ if ( phblk->cbUsed )
 		       /* pointer is not the one being added to	the	*/
 		       /* free list chain				*/
 
-   if (	phbase->phblkLast != phblk )
+   if (	phbase->phblkLast != phblk ){
 
 		       /* Check	to see if the free list	pointer	chain	*/
 		       /* has been started				*/
@@ -827,15 +827,15 @@ if ( phblk->cbUsed )
 		       /* of the chain and add the newly released	*/
 		       /* block	to it					*/
 
-	   while ( phblkNext->phblkFree	)
+	   }while ( phblkNext->phblkFree	){
 	       phblkNext = phblkNext->phblkFree;
 
 	   phblkNext->phblkFree	= phblk;
-	   }
-       else
+	   } }else{
 		       /* No free list pointer chain exists, use the	*/
 		       /* released block as the	starting point		*/
 
 	   phbase->phblkFree = phblk;
+	   }
    }
 }

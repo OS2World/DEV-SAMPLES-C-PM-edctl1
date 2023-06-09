@@ -1,8 +1,7 @@
+;-------------------------------------
+; DRIVER.DEF module definition file
+;-------------------------------------
 
-NAME            Driver WINDOWAPI
+NAME           DRIVER  WINDOWAPI
 
-STACKSIZE 32768
-
-PROTMODE
-
-EXETYPE        OS2
+DESCRIPTION     '@#OS2World:1.01#@##1## 08 Jun 2023 20:00:00     ARCAOS-507::::::v1.01@@PM Control Demo'
