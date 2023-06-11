@@ -1,72 +1,65 @@
-*******************************************************************
-*                                                                 *
-* Subject: OS/2 Developer Magazine, GUI Corner column,            *
-*          "The Forbidden Text" - July/August 1994 issue.         *
-* Purpose: Compilable 32-Bit edit control source code sample      *
-*          and test routine for various OS/2 compilers.           *
-* Authors: Matt Smith, Prominare Inc.                             *
-*          Mark Benge, IBM Software Solutions                     *
-*                                                                 *
-* Revisions:                                                      *
-*          Version 1.01                                *
-*                                                                 *
-*******************************************************************
-*
-* A 32-Bit edit control.  
+Name: 		EDCTL1
+Descripcion: 	A 32-Bit edit control 
+Date: 		2023-06-08
+Version:	1.01
+----------------------------   
 
-************************************************************************
-************************************************************************
-*                           SPECIAL NOTE                               *
-************************************************************************
-************************************************************************
-*     The behaviour of this control is similar to that provided        *
-*     by OS/2 PM.  Although it may be based on documentation           *
-*     describing programming interfaces and techniques, it should      *
-*     not be misconstrued that this sample code is an official         *
-*     release of the OS/2 PM control and is supported as such.         *
-************************************************************************
-************************************************************************
+DESCRIPTION
+-----------
+OS/2 Developer Magazine, GUI Corner column, "The Forbidden Text" - July/August 1994 issue.
 
-We are providing the build files for Zortech C++ for OS/2 Version 3.1
-even though we were not able to successfully use the DLL.  At this time,
-we have not had a response from Symantec Corp. on how to solve the
-problem.  These files are only provided as a convenience.
+Purpose: Compilable 32-Bit edit control source code sample and test routine for various OS/2 compilers.
+
+The behaviour of this control is similar to that provided by OS/2 PM.  Although it may be based on documentation describing programming interfaces and techniques, it should not be misconstrued that this sample code is an official release of the OS/2 PM control and is supported as such.
+
+We are providing the build files for Zortech C++ for OS/2 Version 3.1 even though we were not able to successfully use the DLL.  At this time, we have not had a response from Symantec Corp. on how to solve the problem.  These files are only provided as a convenience.
 
 
-If you have any questions or comments, please direct them to us AND NOT
-IBM.  This control is NOT supported by IBM's PSP Group.  Thanks and stay
-tuned 'cause more fun with the control is on its way.
+REQUIREMENTS
+------------
+- yum install git gcc make libc-devel binutils watcom-wrc watcom-wlink-hll
 
-Mark Benge
-Matt Smith
 
-********************************************************************
-April 22nd, 1994
+COMPILE INSTRUCTIONS
+--------------------
+This version of this sample was modified to compile on ArcaOS with GCC 9 compiler. 
 
-Please note, that when you compile these files, you may find that you
-encounter errors within the MMPM/2 headers.  You will have to correct
-these manually yourself.
+1) Remember to have correct header files your path. For GCC the correct ones are the included on the "libc-devel", not the ones from the OS/2 Toolkit. Check your config.sys for "SET INCLUDE=C:\usr\include"
 
-These errors will vary depending on the compiler.
+2) Since I'm using the Watcom Resource Compiler (open source) instead of the classic rc.exe, and the the Watcom Linker, intead of the classic ilink.exe, add to your config.sys...
+ SET EMXOMFLD_LINKER=wl.exe
+ SET EMXOMFLD_TYPE=WLINK
+ SET EMXOMFLD_RC_TYPE=WRC
+ SET EMXOMFLD_RC=wrc.exe
 
-We have compiled and tested the source code using IBM C Set++ Version 2.01,
-Borland C++ for OS/2 Version 1.5 and WATCOM C/C++32 Version 9.5.
+3) Run "make" or "make 2>&1 |tee make.out" to get the log file.
 
-Please direct any comments, questions, and such to either Matt Smith
-(Internet: prominar@io.org CompuServe: 70363,1175) or Mark Benge
-(Internet: banzai@vnet.ibm.com CompuServe: 73532,2063  VNET: banzai AT CARVM1)
 
-********************************************************************
-July 6, 1994
+TOOLS USED
+----------
+- ArcaOS	- Verion 5.0.7
+- wrc 		- Version 2.0beta1
+- gcc		- gcc (GCC) 9.2.0 20190812 (OS/2 RPM build 9.2.0-5.oc00)
+- make 		- Version 3.81 k2 (2017-11-10)
 
-This is only a partial implementation of the entry field control.
-Support for the ES_CENTER and ES_RIGHT styles have not been implemented.
-Also, the control has not be fully tested to ensure compliance with
-the existing OS/2 PM entry field.
+TROUBLESHOOT
+------------
+The compile produce will run by just executing make on the directory, but a compile.cmd file is includes to store the log in a file. If you want to save the log file you can run it as "nmake 2>&1 |tee make.out". The log will be saved into the "make.out" file.
 
-The implementation presented here is designed to show you how the some
-of the "trickier" manipulation methods are accomplished.  It is not
-intended as a complete replacement to the existing control.
+HISTORY
+---------- 
+- 1.01 - 2023-06-08
+Changed version to compile on gcc and to run on ArcaOS 5.0.7.
 
-Mark Benge
-Matt Smith
+- 1.00 - 1994-04-22
+Original version by Charles Petzold
+
+LICENSE
+-------
+The 3-Clause BSD License.
+
+AUTHORS
+-------
+* Martin Iturbide (2023)
+* Mark Benge
+* Matt Smith
